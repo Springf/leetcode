@@ -16,20 +16,12 @@ public class Solution {
                 i++;
         }
         
-        int[] result = new int[2];
         
         var r1 = Array.IndexOf(nums, sorted[i]);
         var r2 = Array.IndexOf(nums, sorted[j]);
         if(r1 == r2)
             r2 = Array.IndexOf(nums, sorted[j], r1+1);
-        if(r1 > r2)
-        {
-            int temp = r1;
-            r1 = r2;
-            r2 = temp;
-        }
-        result[0] = r1;
-        result[1] = r2;
-        return result;
+        return r1 > r2 ? new int[] {r2, r1} : new int[] {r1, r2};
+        
     }
 }
