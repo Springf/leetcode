@@ -1,20 +1,18 @@
 public class Solution {
     public int LengthOfLongestSubstring(string s) {
-        var count = 0;
+        var start = 0;
         var max = 0;
-        Dictionary<char, bool> map = new Dictionary<char, bool>();
-        foreach(var c in s)
+        Dictionary<char, int> map = new Dictionary<char, int>();
+        for(int i = 0; i < s.Length; i++)
         {
-            if(map.ContainsKey(c))
+            if(map.ContainsKey(s[i]))
             {
-                if(count > max)
-                    max = count;
-                count = 0;
-                map.Clear();
+                max = max < i - start ? i - start : max;
+                start = map[s[i]] + 1 > start ? map[s[i]] + 1 : start;
             }
-            map[c] = true;
-            count++;
+            
+            map[s[i]] = i;
         }
-        return max > count ? max : count;
+        return max < s.Length - start ? s.Length - start : max;
     }
 }
