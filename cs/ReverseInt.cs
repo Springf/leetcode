@@ -1,20 +1,16 @@
 public class Solution {
     public int Reverse(int x) {
        try{
-           var sign = 1;
-            if(x < 0)
-            {
-                sign = -1;
-                x = -1 * x;
-            }
-            var s = x.ToString();
-            var sb = new StringBuilder();
-            foreach (char c in s)
-            {
-                sb.Insert(0, c);
-            }
-            
-            return int.Parse(sb.ToString())*sign;
+           var y = x / 10;
+           var r = x - y * 10;
+           x = y;
+           while(x!=0) 
+           {
+               y = x / 10;
+               r = checked(r * 10 + x - y * 10);
+               x = y;
+           }
+           return r;
        }
        catch (Exception ex)
        {
