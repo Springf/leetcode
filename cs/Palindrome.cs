@@ -4,15 +4,19 @@ public class Solution {
             return true;
         if(x < 0)
             return false;
+        if(x%10 == 0)
+            return false;
         
-        var xs = x.ToString();
+        var r = 0;
+        var y = x;
         
-        for(int i = 0; i < xs.Length/2; i++)
+        while(x != 0)
         {
-            if(xs[i] != xs[xs.Length - i - 1])
-                return false;
+            r = r*10 + x%10;
+            x /= 10;
+            //if(r == x) return true;
         }
         
-        return true;
+        return r == y;
     }
 }
