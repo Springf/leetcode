@@ -2,6 +2,8 @@ public class Solution {
     public bool IsPalindrome(int x) {
         if(x < 10 && x >= 0)
             return true;
+        if(x < 0)
+            return false;
         
         var xs = x.ToString();
         
