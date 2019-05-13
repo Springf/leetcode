@@ -5,29 +5,18 @@ public class Solution {
         if(strs.Length == 1)
             return strs[0];
         
-        int i = 0;
-        bool done = false;
-        while(!done)
-        {
-            if(i < strs[0].Length)
+       for(int i = 0; i < strs[0].Length; i++)
+       {
+            var c = strs[0][i];
+            for(int j = 1; j< strs.Length; j++)
             {
-                var c = strs[0][i];
-                foreach(var s in strs)
+                var s = strs[j];
+                if(i == s.Length || c != s[i])
                 {
-                    if(i == s.Length || c != s[i])
-                    {
-                        done = true;
-                        break;
-                    }
+                   return strs[0].Substring(0, i);  
                 }
-            }
-            else
-                done = true;
-            i++;
-        }
-        
-        if(i == 0)
-            return "";
-        return strs[0].Substring(0, i-1);
+            }   
+       }
+        return strs[0];
     }
 }
