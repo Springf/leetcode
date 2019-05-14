@@ -23,9 +23,9 @@ public class Solution {
     
     private bool isPalindrome(string s, int start, int length)
     {
-        for(int i = start; i < (start+length)/ 2; i++)
+        for(int i = start; i < start+length/ 2; i++)
         {
-            if(s[i] != s[start + length - 1 - i])
+            if(s[i] != s[start + length - 1 - (i - start)])
                 return false;
         }
         return true;
