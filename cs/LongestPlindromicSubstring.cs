@@ -1,4 +1,5 @@
 public class Solution {
+    static Dictionary<Tuple<int,int>, bool> p = new Dictionary<Tuple<int,int>, bool>();
     public string LongestPalindrome(string s) {
         if(string.IsNullOrWhiteSpace(s) || s.Length == 1)
             return s;
@@ -9,7 +10,7 @@ public class Solution {
                 if(i + j <= s.Length)
                 {
                     //var ss = s.Substring(i,j);
-                    if(isPalindrome(s,i,j))
+                    if(isPalindrome(s,i,i+j-1))
                     {
                         return s.Substring(i,j);
                     }
@@ -21,13 +22,12 @@ public class Solution {
         return s;
     }
     
-    private bool isPalindrome(string s, int start, int length)
+    private static bool isPalindrome(string s, int start, int end)
     {
-        for(int i = start; i < start+length/ 2; i++)
-        {
-            if(s[i] != s[start + length - 1 - (i - start)])
-                return false;
-        }
-        return true;
+        if(start >= end) return true;
+        if(p[new Tuple<int,int> (start, end)])
+            return true;
+        p[new Tuple<int,int> (start, end)] = s[start] == s[end] && isPalindrome(start +1, end -1);
+        return p[new Tuple<int,int> (start, end)];
     }
 }
